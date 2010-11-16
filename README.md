@@ -68,12 +68,7 @@ Entry assumes an express server module `server` available that exposes an
     };
     require('server').set('settings', function(id) { return settings[id]; });
 
-### 2 Expose request handlers
-
-    // Use entry module's built in request handlers.
-    require('entry').request_handlers();
-
-### 3 Go
+### 2 Go
 
 - Create `new new/example`
 - Edit `edit/testpage`

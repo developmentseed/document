@@ -1,7 +1,7 @@
 
 # Entry
 
-Rudimentary content system for Express + CouchDB +.
+Rudimentary content system for Express + CouchDB + HBS.
 
 - Define one or more types of entries.
 - Create, update, delete entries.

@@ -19,7 +19,7 @@ Add the following line to your ndistro file and rebuild:
 Entry assumes an express server module `server` available that exposes an
 `entryTypes` object describing all available entry types on (see usage)
 
-    var entryTypes = require('server').set('settings')('entryTypes')
+    var entry_settings = require('server').set('settings')('entry')
 
 ## Requirements
 
@@ -36,31 +36,33 @@ Entry assumes an express server module `server` available that exposes an
 ### 1 Define an entry type
 
     var settings = {
-        entryTypes: {
-            'example': {
-                'name': 'Example',
-                'description': 'A simple example entry',
-                'fields': [
-                    {
-                        id: 'title',
-                        label: 'Title',
-                        form: {
-                            widget: 'text',
-                            required: true
+        entry: {
+            types: {
+                'example': {
+                    'name': 'Example',
+                    'description': 'A simple example entry',
+                    'fields': [
+                        {
+                            id: 'title',
+                            label: 'Title',
+                            form: {
+                                widget: 'text',
+                                required: true
+                            },
+                            render: 'title',
                         },
-                        render: 'title',
-                    },
-                    {
-                        id: 'body',
-                        label: 'Body',
-                        default: '',
-                        form: {
-                            widget: 'textarea',
-                            required: false
-                        },
-                        render: 'markdown'
-                    }
-              ]
+                        {
+                            id: 'body',
+                            label: 'Body',
+                            default: '',
+                            form: {
+                                widget: 'textarea',
+                                required: false
+                            },
+                            render: 'markdown'
+                        }
+                  ]
+                }
             }
         }
     };

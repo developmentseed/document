@@ -16,6 +16,11 @@ Add the following line to your ndistro file and rebuild:
 
     module developmentseed entry
 
+Entry assumes a module `server` available that exposes an entryTypes object
+describing all valid entry types on (see usage)
+
+    var entryTypes = require('server').set('settings')('entryTypes')
+
 ## Requirements
 
 - Express http://expressjs.com/
@@ -30,35 +35,36 @@ Add the following line to your ndistro file and rebuild:
 
 ### 1 Define an entry type
 
-    var entryTypes = {
-        'example': {
-            'name': 'Example',
-            'description': 'A simple example entry',
-            'fields': [
-                {
-                    id: 'title',
-                    label: 'Title',
-                    form: {
-                        widget: 'text',
-                        required: true
+    var settings = {
+        entryTypes: {
+            'example': {
+                'name': 'Example',
+                'description': 'A simple example entry',
+                'fields': [
+                    {
+                        id: 'title',
+                        label: 'Title',
+                        form: {
+                            widget: 'text',
+                            required: true
+                        },
+                        render: 'title',
                     },
-                    render: 'title',
-                },
-                {
-                    id: 'body',
-                    label: 'Body',
-                    default: '',
-                    form: {
-                        widget: 'textarea',
-                        required: false
-                    },
-                    render: 'markdown'
-                }
-          ]
+                    {
+                        id: 'body',
+                        label: 'Body',
+                        default: '',
+                        form: {
+                            widget: 'textarea',
+                            required: false
+                        },
+                        render: 'markdown'
+                    }
+              ]
+            }
         }
     };
-
-    app.set('settings')('entryTypes') = entryTypes;
+    require('server').set('settings', function(id) { return settings[id]; });
 
 ### 2 Go
 

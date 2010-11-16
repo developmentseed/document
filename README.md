@@ -16,8 +16,8 @@ Add the following line to your ndistro file and rebuild:
 
     module developmentseed entry
 
-Entry assumes a module `server` available that exposes an entryTypes object
-describing all valid entry types on (see usage)
+Entry assumes an express server module `server` available that exposes an
+`entryTypes` object describing all available entry types on (see usage)
 
     var entryTypes = require('server').set('settings')('entryTypes')
 
@@ -66,7 +66,12 @@ describing all valid entry types on (see usage)
     };
     require('server').set('settings', function(id) { return settings[id]; });
 
-### 2 Go
+### 2 Expose request handlers
+
+    // Use entry module's built in request handlers.
+    require('entry').request_handlers();
+
+### 3 Go
 
 - Create `new new/example`
 - Edit `edit/testpage`

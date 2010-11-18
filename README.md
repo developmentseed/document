@@ -16,10 +16,10 @@ Add the following line to your ndistro file and rebuild:
 
     module developmentseed entry
 
-Entry assumes an express server module `server` available that exposes an
+Entry assumes the `expresslane` module to be available that exposes an
 `entryTypes` object describing all available entry types on (see usage)
 
-    var entry_settings = require('server').set('settings')('entry')
+    var entry_settings = require('expresslane').app.set('settings')('entry')
 
 ## Requirements
 
@@ -35,7 +35,8 @@ Entry assumes an express server module `server` available that exposes an
 
 ### 1 Define an entry type
 
-    var settings = {
+    // settings.js
+    module.exports = {
         entry: {
             types: {
                 'example': {
@@ -66,7 +67,6 @@ Entry assumes an express server module `server` available that exposes an
             }
         }
     };
-    require('server').set('settings', function(id) { return settings[id]; });
 
 ### 2 Go
 

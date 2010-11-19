@@ -1,0 +1,10 @@
+<div class="entry">
+    {{#items}}
+        {{#prose}}
+            <div class="prose">{{{../prose}}}</div>
+        {{/prose}}
+        {{^prose}}
+            {{{../template content}}}
+        {{/prose}}
+    {{/items}}
+</div>

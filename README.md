@@ -70,7 +70,7 @@ string identifying the databse to use for documents (see usage).
 
 ### 2 Import design documents into couchdb
 
-    curl -X PUT http://127.0.0.1:5984/[database]/_design/pages -d design_docs/pages.json
+    curl -X PUT http://127.0.0.1:5984/[database]/_design/pages -d @design_docs/pages.json
 
 ### 3 Go
 

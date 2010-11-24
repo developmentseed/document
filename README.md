@@ -38,7 +38,7 @@ Entry assumes the `expresslane` module to be available that exposes an
     // settings.js
     module.exports = {
         entry: {
-            dbName: 'entries',
+            database: 'entries',
             types: {
                 'example': {
                     'name': 'Example',

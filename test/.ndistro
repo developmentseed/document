@@ -1,0 +1,16 @@
+# Dependencies for testing
+
+node 0.2.3
+
+module senchalabs connect 0.2.6
+module visionmedia express 1.0.0rc4
+module developmentseed forms v0.3.0
+module developmentseed expresslane v1.0.2
+module developmentseed user 0.0.3
+module visionmedia expresso 0.6.4
+module caolan async v0.1.0
+module donpark hbs 0.0.2
+
+# Submodule workarounds, see:
+# http://blog.iclutton.com/2010/09/nodejs-ndistro-and-git-submodules.html
+! test -d modules/hbs/support/handlebars/handlebars.js && (module developmentseed handlebars.js ds-v0.1 && rmdir modules/hbs/support/handlebars && mv modules/handlebars.js modules/hbs/support/handlebars)

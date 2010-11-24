@@ -7,4 +7,5 @@ require.paths.unshift(__dirname + 'modules/forms/lib'); // Hack for forms...
 
 // Start the express server using Express Lane, enable user.
 require('expresslane').start();
-require('../lib/user');
+require('user');
+require('../lib/document');

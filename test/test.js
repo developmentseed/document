@@ -1,3 +1,8 @@
+/**
+ * @fileoverview
+ * Basic tests for document module.
+ */
+
 // Make sure expresslane finds settings.js.
 require.paths.unshift(__dirname);
 

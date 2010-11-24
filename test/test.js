@@ -3,10 +3,7 @@
  * Basic tests for document module.
  */
 
-// Make sure expresslane finds settings.js.
-require.paths.unshift(__dirname);
-
-var app = require('expresslane').configure();
+var app = require('expresslane').configure(require('./settings'));
 require('user');
 require('../lib/document');
 

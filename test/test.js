@@ -3,7 +3,7 @@
  * Basic tests for document module.
  */
 
-var app = require('expresslane').configure(require('./settings'));
+var app = require('expresslane').configure(__dirname);
 require('user');
 require('../lib/document');
 

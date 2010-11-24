@@ -1,25 +1,25 @@
 
 # Document
 
-Rudimentary content system for Express + CouchDB + HBS.
+Rudimentary content system for [Express Lane](https://github.com/developmentseed/expresslane).
 
 - Define one or more types of documents.
 - Create, update, delete documents.
-- Relate documents to each other in a hierarchy.
-
-Document can be used for instance to build a simple about section with a
-hierarchical document structure.
+- Relate documents to each other in a hierarchical manner.
 
 ## Installation
 
 Add the following line to your ndistro file and rebuild:
 
-    module developmentseed document
+    module developmentseed document [version]
 
 Document assumes the `expresslane` module to be available that exposes an
-`documentTypes` object describing all available document types on (see usage)
+`documentTypes` object describing all available document types and a `database`
+string identifying the databse to use for documents (see usage).
 
-    var document_settings = require('expresslane').app.set('settings')('document')
+    var settings = require('expresslane').app.set('settings')('document')
+    var documentTypes = document_settings.documentTypes;
+    var database = settings.database;
 
 ## Requirements
 

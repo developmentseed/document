@@ -1,0 +1,24 @@
+{
+    "_id":"_design/pages_render",
+    "language":"javascript",
+    "views":{
+        "all":{
+            "map": "function(doc) {
+                emit([doc._id, 'parent'], doc);
+                if (doc.field_parents) {
+                    doc.field_parents.forEach(function(i) {
+                        emit([i, 'children'], doc);
+                    });
+                }
+            }"
+        },
+        "hierarchy": {
+            "map": "function(doc) {
+                emit(doc._id, {path: doc._id, title: doc.field_title});
+                if(doc.field_parent) {
+                        emit(doc.field_parent, {path: doc._id, title: doc.field_title, weight: doc.field_weight});
+                }
+            }",
+        }
+    }
+}

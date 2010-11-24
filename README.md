@@ -23,13 +23,11 @@ string identifying the databse to use for documents (see usage).
 
 ## Requirements
 
-- Express http://expressjs.com/
+- [Express Lane](https://github.com/developmentseed/expresslane) and dependencies.
 - CouchDB http://couchdb.apache.org/
 - Cradle https://github.com/cloudhead/cradle
-- Express Lane https://github.com/developmentseed/expresslane
 - Forms https://github.com/developmentseed/forms
 - User https://github.com/developmentseed/user
-- Hbs (view engine) https://github.com/developmentseed/hbs
 - Markdown https://github.com/andris9/node-markdown
 
 ## Usage

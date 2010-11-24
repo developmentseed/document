@@ -1,31 +1,32 @@
 
-# Entry
+# Document
 
 Rudimentary content system for Express + CouchDB + HBS.
 
-- Define one or more types of entries.
-- Create, update, delete entries.
-- Relate entries to each other in a hierarchy.
+- Define one or more types of documents.
+- Create, update, delete documents.
+- Relate documents to each other in a hierarchy.
 
-Entry can be used for instance to build a simple about section with a
+Document can be used for instance to build a simple about section with a
 hierarchical document structure.
 
 ## Installation
 
 Add the following line to your ndistro file and rebuild:
 
-    module developmentseed entry
+    module developmentseed document
 
-Entry assumes the `expresslane` module to be available that exposes an
-`entryTypes` object describing all available entry types on (see usage)
+Document assumes the `expresslane` module to be available that exposes an
+`documentTypes` object describing all available document types on (see usage)
 
-    var entry_settings = require('expresslane').app.set('settings')('entry')
+    var document_settings = require('expresslane').app.set('settings')('document')
 
 ## Requirements
 
 - Express http://expressjs.com/
 - CouchDB http://couchdb.apache.org/
 - Cradle https://github.com/cloudhead/cradle
+- Express Lane https://github.com/developmentseed/expresslane
 - Forms https://github.com/developmentseed/forms
 - User https://github.com/developmentseed/user
 - Hbs (view engine) https://github.com/developmentseed/hbs
@@ -33,16 +34,16 @@ Entry assumes the `expresslane` module to be available that exposes an
 
 ## Usage
 
-### 1 Define the database name and an entry type
+### 1 Define the database name and an document type
 
     // settings.js
     module.exports = {
-        entry: {
-            database: 'entries',
+        document: {
+            database: 'docs',
             types: {
                 'example': {
                     'name': 'Example',
-                    'description': 'A simple example entry',
+                    'description': 'A simple example document',
                     'fields': [
                         {
                             id: 'title',

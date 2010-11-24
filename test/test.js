@@ -3,77 +3,91 @@ require.paths.unshift(__dirname);
 
 var app = require('expresslane').configure();
 require('user');
-require('document');
+require('../lib/document');
 
 module.exports = {
     /**
-     * Logs in as a user attempts to create a new
-     * entry, view that entry then delete that entry.
+     * Logs in, attempt to create a new document, view that document then
+     * delete it.
      */
-    'web': function(assert) {
+    'document test': function(assert) {
         var headers = {
             'Content-Type' : 'application/x-www-form-urlencoded'
-        };
-        // /user is protected, resulting in a redirect to /login.
-        assert.response(app, {
-            url: '/user',
-            method: 'GET',
-            headers: headers
-        }, {
-            status: 302
-        });
-
-        // Checks if username is wrong user is redirected to login page.
-        assert.response(app, {
-           url: '/login',
-           method: 'POST',
-           headers: headers,
-           data: 'name=wronguser&password=admin&login=Login'
-        }, {
-            body: /.*Unknown user.*/,
-            status: 200
-        });
-
-        // Checks if password is wrong user is redirected to login page.
-        assert.response(app, {
-           url: '/login',
-           method: 'POST',
-           headers: headers,
-           data: 'name=admin&password=wrongpassword&login=Login'
-        }, {
-            body: /.*Wrong password.*/,
-            status: 200
-        });
-
-        // Login.
+        }
         assert.response(app, {
             url: '/login',
             method: 'POST',
             headers: headers,
             data: 'name=admin&password=admin&login=Login'
-        }, function(res) {
-            // Use cookie for subsequent responses.
-            headers = {
-                'Cookie': res.headers['set-cookie']
-            };
+        }, {status: 302} , function(res) {
+            // Stores the cookie header into reusable variable.
+            headers['Cookie'] = res.headers['set-cookie'];
 
-            // Login should redirect to /user now.
+            // Creates arbitrary basic content entry as a logged in user.
             assert.response(app, {
-                url: '/login',
-                method: 'GET',
-                headers: headers
+                url: '/new/testdoc',
+                headers: headers,
+                method: 'POST',
+                data: '_id=test&field_title=Ewok&field_body=Hello+my+furry+friend.&submit=Submit'
             }, {
                 status: 302
             });
 
-            // User is accessible.
+            // Checks that the entry was created.
             assert.response(app, {
-                url: '/user',
-                method: 'GET',
-                headers: headers
+                url: '/test',
+                headers: headers,
             }, {
-                body: /.*admin.*/,
-                status: 200
+                status: 200,
+                body: /Ewok/
+            });
+
+            // Edits basic content entry as a logged in user sets entry as unpublished.
+            assert.response(app, {
+                url: '/edit/test',
+                headers: headers,
+                method: 'POST',
+                data: '_id=test&field_title=Ewok&field_body=Hello+my+furry+friend.&field_published=&submit=Submit'
+            }, {
+                status: 302
+            });
+
+            // Checks that the unpublished content is not accesible by anonymous users.
+            assert.response(app, {
+                url: '/test',
+            }, {
+                status: 403
+            });
+
+            // Checks that the entry edit form is protected.
+            assert.response(app, {
+                url: '/edit/test',
+            }, {
+                status: 403
+            });
+
+            // Checks that the entry delete form is protected.
+            assert.response(app, {
+                url: '/delete/test',
+            }, {
+                status: 403
+            });
+
+            // Checks that the entry form is protected.
+            assert.response(app, {
+                url: '/new/testdoc',
+            }, {
+                status: 403
+            });
+
+            // Deletes created entry as a logged in user.
+            assert.response(app, {
+                url: '/delete/test',
+                headers: headers,
+                method: 'POST',
+                data: 'delete=Delete'
+            }, {
+                status: 302
             });
         });
     }

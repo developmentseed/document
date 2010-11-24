@@ -78,6 +78,14 @@ string identifying the databse to use for documents (see usage).
 - Edit `edit/testpage`
 - Delete `delete/testpage`
 
+## Testing
+
+Tests require couchdb to be present at http://127.0.0.1:5984
+
+    cd document/test
+    ndistro
+    tests
+
 ## Todo
 
 Plenty.

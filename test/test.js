@@ -28,7 +28,7 @@ module.exports = {
             // Stores the cookie header into reusable variable.
             headers['Cookie'] = res.headers['set-cookie'];
 
-            // Creates arbitrary basic content entry as a logged in user.
+            // Creates arbitrary basic content document as a logged in user.
             assert.response(app, {
                 url: '/new/testdoc',
                 headers: headers,
@@ -38,7 +38,7 @@ module.exports = {
                 status: 302
             });
 
-            // Checks that the entry was created.
+            // Checks that the document was created.
             assert.response(app, {
                 url: '/test',
                 headers: headers,
@@ -47,7 +47,7 @@ module.exports = {
                 body: /Ewok/
             });
 
-            // Edits basic content entry as a logged in user sets entry as unpublished.
+            // Edits basic content document as a logged in user sets document as unpublished.
             assert.response(app, {
                 url: '/edit/test',
                 headers: headers,
@@ -64,28 +64,28 @@ module.exports = {
                 status: 403
             });
 
-            // Checks that the entry edit form is protected.
+            // Checks that the document edit form is protected.
             assert.response(app, {
                 url: '/edit/test',
             }, {
                 status: 403
             });
 
-            // Checks that the entry delete form is protected.
+            // Checks that the document delete form is protected.
             assert.response(app, {
                 url: '/delete/test',
             }, {
                 status: 403
             });
 
-            // Checks that the entry form is protected.
+            // Checks that the document form is protected.
             assert.response(app, {
                 url: '/new/testdoc',
             }, {
                 status: 403
             });
 
-            // Deletes created entry as a logged in user.
+            // Deletes created document as a logged in user.
             assert.response(app, {
                 url: '/delete/test',
                 headers: headers,

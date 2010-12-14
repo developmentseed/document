@@ -4,9 +4,9 @@ node 0.2.3
 
 module senchalabs connect 0.3.0
 module visionmedia express 1.0.0
-module developmentseed forms dev-adrian
+module developmentseed forms v0.4.0
 module developmentseed expresslane
-module developmentseed user dev-adrian 
+module developmentseed user 0.0.5
 module visionmedia expresso 0.6.4
 module caolan async v0.1.0
 module donpark hbs 0.0.2

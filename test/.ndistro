@@ -7,6 +7,7 @@ module visionmedia express 1.0.0
 module developmentseed forms v0.4.0
 module developmentseed expresslane
 module developmentseed user 0.0.5
+module felixge node-formidable v0.9.10
 module visionmedia expresso 0.6.4
 module caolan async v0.1.0
 module donpark hbs 0.0.2

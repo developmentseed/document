@@ -114,7 +114,6 @@ module.exports = {
                             }, {
                                 status: 302
                             }, function(res) {
-
                                 // Clear the form cache , to remove all the active timers.
                                 forms.Form.cache.clear();
                             });

@@ -52,7 +52,8 @@ module.exports = {
                     url: '/new/testdoc',
                     headers: headers,
                     method: 'POST',
-                    data: '_id=test&field_title=Ewok&field_body=Hello+my+furry+friend.&submit=Submit&_build_id=' + build_id,
+                    data: '_id=test&field_title=Ewok&field_body=Hello+my+furry+friend.' +
+                          '&submit=Submit&_build_id=' + build_id,
                 }, {status: 302}, function(res) {
                     sys.debug('Submitted new document form build_id :' + build_id);
                     // Checks that the document was created.
@@ -64,6 +65,46 @@ module.exports = {
                         body: /Ewok/
                     });
 
+                    // Add a page with this as the parent , to test that rendering is working.
+                    assert.response(app, {
+                        url: '/new/testdoc',
+                        headers: headers,
+                        method: 'GET',
+                    }, {status: 200}, function(res) {
+                        // extract the build_id from this form.
+                        var build_id = build_id_regex.exec(res.body)[1];
+                        // Creates arbitrary basic content document as a logged in user.
+                        assert.response(app, {
+                            url: '/new/testdoc',
+                            headers: headers,
+                            method: 'POST',
+                            data: '_id=test/child&field_title=Wicket' +
+                                  '&field_body=Hello+my+furry+friend.' +
+                                  '&submit=Submit&field_parent=test' +
+                                  '&_build_id=' + build_id,
+
+                        }, {status: 302}, function(res) {
+                            // Checks that the parent is linked to from the child page.
+                            assert.response(app, {
+                                url: '/test/child',
+                                headers: headers,
+                            }, {
+                                status: 200,
+                                body: /Ewok/
+                            });
+                            // Checks that the child is linked to from the parent page.
+                            assert.response(app, {
+                                url: '/test',
+                                headers: headers,
+                            }, {
+                                status: 200,
+                                body: /Wicket/
+                            });
+
+
+
+                        });
+                    });
 
                     // Checks that the unpublished content is not accesible by anonymous users.
                     assert.response(app, {
@@ -93,7 +134,8 @@ module.exports = {
                             url: '/edit/test',
                             headers: headers,
                             method: 'POST',
-                            data: '_id=test&field_title=Ewok&field_body=Hello+my+furry+friend.&field_published=&submit=Submit&_build_id=' + build_id,
+                            data: '_id=test&field_title=Ewok&field_body=Hello+my+furry+friend.' +
+                                  '&field_published=&submit=Submit&_build_id=' + build_id,
                         }, {
                             status: 302
                         }, function(res) { 

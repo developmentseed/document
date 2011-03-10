@@ -14,7 +14,6 @@
         },
         "hierarchy": {
             "map": "function(doc) {
-                emit(doc._id, {path: doc._id, title: doc.field_title});
                 if(doc.field_parent) {
                         emit(doc.field_parent, {path: doc._id, title: doc.field_title, weight: doc.field_weight});
                 }

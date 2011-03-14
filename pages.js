@@ -16,7 +16,7 @@ var app = require('expresslane').app,
 app.get('/*', document.documentLoader, function(req, res, next) {
     if (!req.doc) { return next(); }
 
-    res.render(view('content'), {locals: req.doc.render(req)});
+    res.render('document', {locals: req.doc.render(req)});
 
 });
 

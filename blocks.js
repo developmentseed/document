@@ -3,7 +3,7 @@ var app = require('expresslane').app,
 
 
 app.get('/*', document.documentLoader, function(req, res, next) {
-    if (!req.doc) { next(); }
+    if (!req.doc) { return next(); }
      
     req.on('blocks:right', function(blocks) {
         blocks.push({

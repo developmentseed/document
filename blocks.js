@@ -3,15 +3,15 @@ var el = require('expresslane'),
 
     el.addBlock({
         region: 'right',
-        loaders: [ document.documentLoader ],
+        loaders: [document.documentLoader],
         filter: function(req, res) {
             return !!req.doc;
         },
         content: function(req, res) {
             return {
                 _template: 'docnav.jade',
-                doc: req.doc,
-            }
-        },
+                doc: req.doc
+            };
+        }
 });
 

@@ -1,24 +1,17 @@
-var app = require('expresslane').app,
+var el = require('expresslane'),
     document = require('document');
 
-
-app.get('/*', document.documentLoader, function(req, res, next) {
-    if (!req.doc) { return next(); }
-     
-    req.on('blocks:right', function(blocks) {
-        blocks.push({
-            module: module.id,
-            delta: 'document-menu',
-            weight: 5,
-            content: function() {
-                var locals = {};
-                locals._template = 'docnav.jade';
-                locals.doc = req.doc;
-                return locals;
+    el.addBlock({
+        region: 'right',
+        loaders: [ document.documentLoader ],
+        filter: function(req, res) {
+            return !!req.doc;
+        },
+        content: function(req, res) {
+            return {
+                _template: 'docnav.jade',
+                doc: req.doc,
             }
-        });
-    })
-
-    next();
+        },
 });
 

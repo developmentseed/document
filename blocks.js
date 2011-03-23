@@ -3,6 +3,7 @@ var el = require('expresslane'),
 
 el.addBlock({
     region: 'right',
+    path: '/*',
     loaders: [document.documentLoader],
     filter: function(req, res) {
         return !!req.doc;

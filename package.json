@@ -9,6 +9,11 @@
   "engines": {
     "node": ">= 0.2.6"
   },
-  "dependencies": {},
+  "dependencies": {
+      "expresslane": "https://github.com/developmentseed/expresslane/tarball/master",
+      "forms": "https://github.com/developmentseed/forms/tarball/master",
+      "user": "https://github.com/developmentseed/user/tarball/master",
+      "node-markdown": "0.1.x"
+  },
   "devDependencies": {}
 }

@@ -10,7 +10,7 @@ el.addBlock({
     },
     content: function(req, res) {
         return {
-            _template: 'docnav.jade',
+            _template: 'docnav',
             doc: req.doc
         };
     }

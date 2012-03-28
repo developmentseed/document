@@ -21,13 +21,6 @@ app.get('/*', document.documentLoader, function(req, res, next) {
 });
 
 /**
- * Expose new form.
- */
-app.get('/new/*', document.forms.new.load(), function(req, res) {
-    req.form.render(req, res);
-});
-
-/**
  * Handle submission of new form.
  */
 app.post('/new/*', document.forms.new.load(), function(req, res) {
@@ -35,9 +28,9 @@ app.post('/new/*', document.forms.new.load(), function(req, res) {
 });
 
 /**
- * Expose edit form.
+ * Expose new form.
  */
-app.get('/edit/*', document.forms.edit.load(), function(req, res) {
+app.get('/new/*', document.forms.new.load(), function(req, res) {
     req.form.render(req, res);
 });
 
@@ -49,9 +42,9 @@ app.post('/edit/*', document.forms.edit.load(), function(req, res) {
 });
 
 /**
- * Expose delete form.
+ * Expose edit form.
  */
-app.get('/delete/*', document.forms.delete.load(), function(req, res) {
+app.get('/edit/*', document.forms.edit.load(), function(req, res) {
     req.form.render(req, res);
 });
 
@@ -61,3 +54,10 @@ app.get('/delete/*', document.forms.delete.load(), function(req, res) {
 app.post('/delete/*', document.forms.delete.load(), function(req, res) {
     req.form.process(req, res);
 });
+/**
+ * Expose delete form.
+ */
+app.get('/delete/*', document.forms.delete.load(), function(req, res) {
+    req.form.render(req, res);
+});
+
